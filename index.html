@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Austin Short</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #ebe7d8;
+      --fg: #121211;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(12px, 2vw, 24px);
+    }
+
+    /* ── Name ── */
+    .name-wrapper {
+      overflow: hidden; /* clips the sliding mask */
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-family: "GFS Didot", serif;
+      font-size: clamp(72px, 9vw, 128px);
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+
+      /* Start fully hidden behind a right-to-left mask */
+      clip-path: inset(0 100% 0 0);
+      animation: revealLTR 1.1s cubic-bezier(0.77, 0, 0.18, 1) 0.2s forwards;
+    }
+
+    @keyframes revealLTR {
+      to {
+        clip-path: inset(0 0% 0 0);
+      }
+    }
+
+    /* ── Subtitle ── */
+    .subtitle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      opacity: 0;
+      animation: fadeIn 0.6s ease 0.9s forwards;
+    }
+
+    .subtitle-role {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .subtitle-spec {
+      font-size: clamp(10px, 0.95vw, 16px);
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    /* ── Links ── */
+    .links {
+      display: flex;
+      gap: clamp(28px, 4vw, 56px);
+      margin-top: clamp(24px, 4vw, 48px);
+      opacity: 0;
+      animation: fadeIn 0.6s ease 1.1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .links a {
+      position: relative;
+      font-size: clamp(18px, 2.2vw, 32px);
+      font-weight: 400;
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-bottom: 3px;
+    }
+
+    /* underline drawn left → right on hover */
+    .links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--fg);
+      transition: width 0.35s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+
+    .links a:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="name-wrapper">
+      <h1>Austin Short</h1>
+    </div>
+    <div class="subtitle">
+      <span class="subtitle-role">Archival Producer</span>
+      <span class="subtitle-spec">Rights &amp; Research &nbsp;|&nbsp; Cinema &amp; Music</span>
+    </div>
+    <nav class="links">
+      <a href="mailto:austinshortdoc@gmail.com">Contact</a>
+      <a href="https://www.imdb.com/name/nm4966994/?ref_=nv_sr_srsg_0_tt_2_nm_6_in_0_q_austin%20short" target="_blank" rel="noopener noreferrer">IMDB</a>
+    </nav>
+  </div>
+</body>
+</html>
